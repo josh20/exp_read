@@ -90,6 +90,41 @@ if __name__ == '__main__':
     rc.readFile()
     print(rc.cm_name)
     print('*'*40)
+    boxes = {}
+    conns = []
+    coord_names = ['Top','Left','Bottom','Right']
+    for x in rc.cm_data['Blocks']:
+    	cds = {}
+    	coords = rc.cm_data['Blocks'][x]['BlockDef']['Coord']
+    	for c in coord_names:
+    		cds[c] = float(coords[c])
+    	boxes[x] = cds
+    for x in rc.cm_data['Blocks']:
+    	if 'Connections' in rc.cm_data['Blocks'][x]:
+    		coords = rc.cm_data['Blocks'][x]['Connections']
+    		#print(coords)
+    		for c in coords:
+    			ind = coords[c]['InputEnd'].split('.')
+    			in_block = ind[1]
+    			in_param = '.'.join(ind[2:])
+    			outd = coords[c]['OutputEnd'].split('.')
+    			out_block = outd[1]
+    			out_param = '.'.join(outd[2:])
+    			print(in_block,in_param)
+    			print(out_block,out_param)
+    			vs = []
+    			#for i, v in enumerate(coords[c]['Vertex'][:-1]):
+    				#vs.append([float(v['XVertex']), float(v['YVertex']),float(coords[c]['Vertex'][i+1]['XVertex']),]float(coords[c]['Vertex'][i+1]['YVertex']))
+    			for i, v in enumerate(vs[:-1]):
+    				if v[0] == vs[i+1][0]:
+    					v.append('Vert')
+    				else:
+    					v.append('Horiz')
+    			print(vs)
+    			
+    		
+    #print(boxes)
+    """
     print(rc.cm_data['Blocks']['19FT103']['BlockDef'])
     print('*'*40)
     tp = rc.cm_data['Blocks']['DACA']['SymbolAttrs']['ViewPinLabels']
@@ -97,6 +132,7 @@ if __name__ == '__main__':
     	if 'hist' not in x.lower() and 'hcmd' not in x.lower():
     		print(x,tp[x])
     print('*'*40)
+    """
     """
     coords = ['Top','Bottom','Left','Right']
     for x in rc.cm_data['Blocks']:
