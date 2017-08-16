@@ -90,7 +90,7 @@ class ReadCM():
     def getBlocks(self):
         self.boxes = {}
         coord_names = ['Top','Left','Bottom','Right']
-        for x in rc.cm_data['Blocks']:
+        for x in self.cm_data['Blocks']:
             cds = {}
             coords = self.cm_data['Blocks'][x]['BlockDef']['Coord']
             for c in coord_names:
@@ -187,8 +187,8 @@ class ReadCM():
 
 
 if __name__ == '__main__':
-    path = '/home/jmill/Documents/Work/1Ref_HDS/C300_20170630'
-    #path = '..'
+    #path = '/home/jmill/Documents/Work/1Ref_HDS/C300_20170630'
+    path = '..'
     filename = '19FC103.cnf.xml'
     rc = ReadCM(os.path.join(path,filename))
     rc.readFile()
