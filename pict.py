@@ -40,8 +40,8 @@ fnt = 'Helvetica-Bold'
 f_size = 40
 
 coords = ['Top','Bottom','Left','Right']
-arrows = {'up':[-4,8,4,8,-1,-1,-2,-8],
-          'down':[-4,-8,4,-8,-1,0,-2,8],
+arrows = {'up':[-4,8,4,8,0,-1,2,-8],
+          'down':[-4,-8,4,-8,0,0,2,8],
           'left':[-8,-4,-8,4,0,0,8,0],
           'right':[8,-4,8,4,-1,0,-8,0]}
 canvas.begin_updates()
@@ -106,7 +106,7 @@ for x in rc.cm_data['Blocks']:
            #print(attr[1])
            paramv = '----'
            if attr[1] in pars:
-               paramv = pars[attr[1]]
+               paramv = pars[attr[1]].strip('"')
            elif attr[1] == 'IOP':
                paramv = rc.cm_data['Blocks'][x]['BlockDef']['AssignedTo']
            elif attr[1] == 'CHANNUM':
